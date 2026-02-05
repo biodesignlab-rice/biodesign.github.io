@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - The Biodesign Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #003d99;
+            --light-blue: #e6f0ff;
+            --accent-blue: #0099ff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            --shadow-hover: 0 8px 24px rgba(0, 102, 204, 0.25);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Modern Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-image {
+            width: 200px;
+            height: 50px;
+            border-radius: 0%;
+            background-color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo::before {
+            content: ;
+            width: 0px;
+            height: 0px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header-section {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            color: var(--primary-blue);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Team Member Styles */
+        .team-member {
+            background: linear-gradient(135deg, var(--light-blue) 0%, rgba(0, 153, 255, 0.05) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .team-member:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-member img {
+            flex-shrink: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+        }
+
+        .team-member-info {
+            flex: 1;
+        }
+
+        .team-member strong {
+            color: var(--primary-blue);
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .team-member p {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .team-section {
+            margin-bottom: 50px;
+        }
+
+        /* Button Styles */
+        button, .btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        button:active, .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 25px;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            box-shadow: 0 -4px 12px rgba(0, 102, 204, 0.1);
+        }
+
+        footer p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: 60px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .team-member {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                padding: 0 10px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-image">
+                    <a href="../index.html">
+                        <img src="../wp-content/uploads/2012/05/cropped-Logo.jpg" width="300" height="100" alt="Bennettlab">
+                    </a>
+                </div>
+                <!-- <span><a href="../index.html">The Biodesign Lab</a></span> -->
+            </a>
+            <ul>
+                <li><a href="../index.html">Research</a></li>
+                <!-- <li><a href="../index.html">About</a></li> -->
+                <li><a href="../people-2/index.html">People</a></li>
+                <li><a href="../publications/index.html">Publications</a></li>
+                <li><a href="https://wiki.rice.edu/confluence/display/BIODESIGN/Home">Lab wiki</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header Section -->
+
+        <div class="header-section" style="text-align: center; margin-bottom: 40px;">
+            <div>
+                <img id="labGroupImage" src="../BennettLab_Merged2.JPG" alt="" title="lab_photo_2018" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+            </div>
+        
+        </div>
+
+        <!-- Principal Investigator -->
+        <div class="team-section">
+            <h2 id="team">Principal Investigator</h2>
+            <div class="team-member">
+                <img class="size-thumbnail wp-image-80" title="" src="matt-bennett/Matt.jpg" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <a title="Matthew R. Bennett" href="https://profiles.rice.edu/faculty/matthew-bennett"><strong>Matthew R. Bennett, PhD</strong></a>
+                    <p>Email: matthew.bennett [at] rice.edu</p>
+                    <p>Phone: +1 713.348.4161</p>
+                    <p>Office: Keck 306</p>
+				</div>
+                
+            </div>
+        </div>
+
+        <!-- Collaborators -->
+        <div class="team-section">
+            <h2>Collaborators</h2>
+            <div class="team-member">               
+              <img class="alignright size-thumbnail wp-image-80" title="" src="kreso.jpg" alt="" width="150" height="150" object-fit = "cover">
+              <div class = "team-member-info">
+                <a title="Krešimir Josić" href="http://www.math.uh.edu/~josic/"><strong>Krešimir Josić, PhD</strong></a>
+                <p>Professor, University of Houston</p>
+                <p>Email: josic [at] math.uh.edu</p>
+              </div>
+                
+            </div>
+
+        </div>
+
+        <!-- Postdoc -->
+        <div class="team-section">
+            <h2>Postdoctoral Researcher</h2>
+            <div class="team-member">
+                <img class="size-full wp-image-269" title="" src="amanda.jpeg" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <strong>Amanda Alexander</strong>
+                  	<p>Email: aa225 [at] rice.edu</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img class="size-full wp-image-269" title="" src="shyam-bhakta/shyam.jpg" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <strong>Shyam Bhakta</strong>
+                    <p>Email: shyam.bhakta [at] rice.edu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graduate Students -->
+        <div class="team-section">
+            <h2>Graduate Students</h2>
+            
+            <div class="team-member">
+                <img class="size-full wp-image-270" title="" src="xiao.png" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <strong>Xiao Peng</strong>
+                    <p>Email: xp6 [at] rice.edu</p>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <img class="size-full wp-image-270" title="" src="charis.jpg" alt="" width="150" height="150" object-fit = "cover"/>
+                <div class="team-member-info">
+                    <strong>Charilaos (Charis) Giannitsis</strong>
+                    <p>Email: cg56 [at] rice.edu</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="team-member-info">
+                    <strong>Camilo Rodriguez Cortes</strong>
+                    <p>Email: cr85 [at] rice.edu</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img class="size-full wp-image-270" title="" src="Kadena.jpg" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <strong>Kadena Weaver</strong>
+                    <p>Email: kc210 [at] rice.edu</p>
+                </div>
+            </div>
+            <div class="team-member">
+				<img class="size-full wp-image-270" title="" src="aadarsh.jpg" alt="" width="150" height="150" />
+                <div class="team-member-info">
+                    <strong>Aadarsh Raghunathan</strong>
+                    <p>Email: ar301 [at] rice.edu</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Undergraduates -->
+        <div class="team-section">
+            <h2>Undergraduate Researchers</h2>
+                <strong>Zoe Gupton</strong><p></p>
+                <strong>Rebekah Bryant</strong><p></p>
+                <strong>Joseph Essman</strong><p></p>
+                <strong>Jacob Mattia</strong><p></p>
+                <strong>Madeline Ngo</strong> <p></p>
+                <strong>Sydney Parks</strong><p></p>
+                <strong>Moriah Wilson</strong><p></p>
+     
+        </div>
+
+        <!-- Alumni -->
+        <div class="team-section">
+            <h2>Alumni</h2>
+            <!<div class="team-member">
+                <strong>Meidi Wang</strong>
+                <p>Postdoctoral researcher, Oak Ridge National Lab</p>
+
+                <strong>Cole Grande</strong>
+                <p>Postdoctoral researcher, Lawrence Berkeley National Lab</p>
+
+                <strong>Marcella Gomez</strong>
+                <p>Assistant Professor, UC Santa Cruz</p>
+
+                <strong>Jae Kyoung Kim</strong>
+                <p>Assistant Professor, KAIST</p>
+
+                <strong>Bo Ma</strong>
+                <p>Associate Professor, Qingdao Institute of Bioenergy and Bioprocess Technology</p>
+
+                <strong>Alan Veliz-Cuba</strong>
+                <p>Assistant Professor, University of Dayton</p>
+
+                <strong>Ye Chen</strong>
+                <p>Professor, Shenzhen Institutes of Advanced Technology</p>
+          
+          		<strong>David Shis</strong>
+                <p>TeraPore Technology</p>
+
+                <strong>Yanfen Bai</strong>
+                <p>Shenzhen Institutes of Advanced Technology</p>
+
+                <strong>Mehdi Sadeghpour</strong>
+                <p>Citi</p>
+
+                <strong>Bhargav Karamched</strong>
+                <p>Assistant Professor, Florida State University</p>
+
+                <strong>Sara Molinari</strong>
+                <p>Assistant Professor, University of Maryland</p>
+
+                <strong>Andrew Hirning</strong>
+                <p>Nikon Instruments</p>
+
+                <strong>Razan Alnahhas</strong>
+                <p>Assistant Director of Academic Programs, Cold Spring Harbor Laboratory</p>
+
+                <strong>David Zong</strong>
+                <p>Novome Biotechnology</p>
+
+                <strong>Jennifer Dou</strong>
+
+                <strong>Bárbara de Freitas Magalhāes</strong>
+
+                <strong>Gaoyang (Bridget) Fan</strong>
+                <p>Scientist, Altos Labs</p>
+
+                <strong>Corwin Miller</strong>
+                <p>Senior Scientist, Ansa Biotechnologies</p>
+
+                <strong>Joanne Ho</strong>
+                <p>Senior Scientist, Metagenomi</p>
+
+                <strong>Baiyang Liu</strong>
+                <p>Postdoc, Columbia University</p>
+
+                <strong>Adam Atanas</strong>
+				<p></p>
+                <strong>Yu-Yu Cheng</strong>
+				<p></p>	
+                <strong>Chinmaya Gupta</strong>
+				<p></p>
+                <strong>Faiza Hussain</strong>
+				<p></p>
+                <strong>Truong Nguyen</strong>
+				<p></p>
+                <strong>Erin O'Brien Gilbert</strong>
+				<p></p>
+                <strong>Calvin Schmidt</strong>
+				<p></p>
+                <strong>Elizabeth Van Itallie</strong>
+
+               
+            </div>
+           
+           
+        </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; The Biodesign Lab. Rice University.</p>
+        <!-- <p style="margin-top: 10px; font-size: 14px;">sth inspiring</p> -->
+    </footer>
+</body>
+</html>

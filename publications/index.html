@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - The Biodesign Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #003d99;
+            --light-blue: #e6f0ff;
+            --accent-blue: #0099ff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            --shadow-hover: 0 8px 24px rgba(0, 102, 204, 0.25);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Modern Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-image {
+            width: 200px;
+            height: 50px;
+            border-radius: 0%;
+            background-color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo::before {
+            content: ;
+            width: 0px;
+            height: 0px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header-section {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            color: var(--primary-blue);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Team Member Styles */
+        .team-member {
+            background: linear-gradient(135deg, var(--light-blue) 0%, rgba(0, 153, 255, 0.05) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-member strong {
+            color: var(--primary-blue);
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .team-member p {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .team-section {
+            margin-bottom: 50px;
+        }
+
+        /* Button Styles */
+        button, .btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        button:active, .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 25px;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            box-shadow: 0 -4px 12px rgba(0, 102, 204, 0.1);
+        }
+
+        footer p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: 60px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .team-member {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                padding: 0 10px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-image">
+                    <a href="../index.html">
+                        <img src="../wp-content/uploads/2012/05/cropped-Logo.jpg" width="300" height="100" alt="Bennettlab">
+                    </a>
+                </div>
+                <!-- <span><a href="../index.html">The Biodesign Lab</a></span> -->
+            </a>
+            <ul>
+                <li><a href="../index.html">Research</a></li>
+                <!-- <li><a href="../index.html">About</a></li> -->
+                <li><a href="../people-2/index.html">People</a></li>
+                <li><a href="../publications/index.html">Publications</a></li>
+                <li><a href="https://wiki.rice.edu/confluence/display/BIODESIGN/Home">Lab wiki</a></li>
+            </ul>
+        </div>
+    </nav>
+        
+	    <div id="wrapper" class="clearfix">
+    
+        <div id="content" class="grid col-620">
+         		
+        
+            <div id="post-150" class="post-150 page type-page status-publish hentry">
+                <h1>Publications</h1>
+ 
+                 
+                
+                <div class="post-entry">
+<p><strong>2026</strong><br />
+Baiyang Liu, Zhi Ren Darren Seet, Xiao Peng, Matthew R. Bennett, Matthew R. Lakin & James Chappell. "Engineering plasmids with synthetic origins of replication." <em>Nature Communications (unedited manuscript)</em> (2026).<br />
+<br />
+<p><strong>2025</strong><br />
+Nicolas E. Grandel, Amanda M. Alexander, Xiao Peng, Caroline Palamountain, Razan N. Alnahhas, Andrew J. Hirning, Krešimir Josić & Matthew R. Bennett. "Long-term homeostasis in microbial consortia via auxotrophic cross-feeding." <em>Nature Communications</em> 16, 8573 (2025).<br />
+<br />
+M.A.S.R. Saadi, Yufei Cui, Shyam P. Bhakta, Sakib Hassan, Vijay Harikrishnan, Ivan R. Siqueira, Matteo Pasquali, Matthew Bennett, Pulickel M. Ajayan & Muhammad M. Rahman. "Flow-induced 2D nanomaterials intercalated aligned bacterial cellulose." <em>Nature Communications</em> 16, 5825 (2025).<br /> 
+<br />
+<p><strong>2024</strong><br />
+Meidi Wang, Louis González, Soutick Saha, Krešimir Josić, Andrew Mugler, Matthew R. Bennett. "Fast, long-range intercellular signal propagation through growth assisted positive feedback." BioRxiv (2024).<br />
+<br />
+de Freitas Magalhães, Bárbara, Gaoyang Fan, Eduardo Sontag, Krešimir Josić, and Matthew R. Bennett. "Pattern formation and bistability in a synthetic intercellular genetic toggle." <em>ACS Synthetic Biology</em> (2024).<br /> 
+<br />
+Zinke, Aasha, Neethu Pottackal, Farhan Zahin, Mohammed Intishar Nur, Faravi Ahmed, Yue Ji, Zaheeruddin Mohammed et al. "Preserving Fresh Eggs via Egg‐Derived Bionanocomposite Coating." <em>Advanced Functional Materials</em>(2024): 2310091.<br />
+<br />
+<strong>2023</strong><br />
+Zong, David M., Mehdi Sadeghpour, Sara Molinari, Razan N. Alnahhas, Andrew J. Hirning, Charilaos Giannitsis, William Ott, Krešimir Josić, and Matthew R. Bennett. "Tunable Dynamics in a Multistrain Transcriptional Pulse Generator." <em>ACS Synthetic Biology</em> <strong>12</strong>, no. 12 (2023): 3531-3543.<br /> 
+<br />
+Liu, Baiyang, Christian Cuba Samaniego, Matthew R. Bennett, Elisa Franco, and James Chappell. "A portable regulatory RNA array design enables tunable and complex regulation across diverse bacteria." <em>Nature Communications</em> <strong>14</strong>, no. 1 (2023): 5268.<br /> 
+<br />
+Winkle, James J., Soutick Saha, Joseph Essman, Matthew R. Bennett, William Ott, Krešimir Josić, and Andrew Mugler. "Signaling in microbial communities with open boundaries." <em>Biophysical Journal</em> <strong>122</strong>, no. 13 (2023): 2808-2817.<br /> 
+<br />
+Ganiga Prabhakar, Ramya, Gaoyang Fan, Razan N. Alnahhas, Andrew J. Hirning, Matthew R. Bennett, and Yousif Shamoo. "Indirect enrichment of desirable, but less fit phenotypes, from a synthetic microbial community using microdroplet confinement." <em>ACS Synthetic Biology</em> <strong>12</strong>, no. 4 (2023): 1239-1251.<br /> 
+<br />
+<strong>2022</strong><br />
+Liu, Baiyang, Christian Cuba Samaniego, Matthew Bennett, James Chappell, and Elisa Franco. "RNA compensation: a positive feedback insulation strategy for RNA-based transcription networks." <em>PACS Synthetic Biology</em> <strong>11</strong>, no. 3 (2022): 1240-1250.<br /> 
+<br />
+Picard HR, Schwingen KS, Green LM, Shis DL, Egan SM, Bennett MR & Swint-Kruse L, “Allosteric regulation within the highly interconnected structural scaffold of AraC/XylS homologs tolerates a wide range of amino acid changes,” <em>PROTEINS</em> <strong>90</strong>, 186-199 (2022).<br /> 
+<br /> 
+Miller CA, Ho JML & Bennett MR, “Strategies for improving small-molecule biosensors in bacteria,” <em>Biosensors</em> <strong>12</strong>, 64 (2022).<br />
+<br />
+Sarmadi, Sorena, James J. Winkle, Razan N. Alnahhas, Matthew R. Bennett, Krešimir Josić, Andreas Mang, and Robert Azencott. "Stochastic neural networks for automatic cell tracking in microscopy image sequences of bacterial colonies." <em>Mathematical and Computational Applications</em> <strong>27</strong>, no. 2 (2022): 22.<br /> 
+<br />
+<strong>2021</strong><br />
+Miller CA, Ho JML, Parks S & Bennett MR, “Macrolide biosensor optimization through cellular substrate sequestration.”<em>ACS Synth Biol </em> <strong>10</strong>, 258-264 (2021). <br /> 
+<br />
+Ho JML, Miller CA, Mattia JR & Bennett MR, “Improved pyrrolysine biosynthesis through continuous directed evolution of the complete pathway.” <em> Nat Comm</em> <strong>12</strong>, 3914 (2021).<br /> 
+<br /> 
+Grandel NE, Reyes Gamas K & Bennett MR, “Control of synthetic microbial consortia in time, space, and composition,” <em>Trends in Microbiology</em> <strong>29</strong>, 1095-1105 (2021).<br /> 
+<br /> 
+Winkle JJ, Karamched BR, Bennett MR, Ott W & Josić K, “Emergent spatiotemporal population dynamics with cell-length control of synthetic microbial consortia,” <em>PLOS Comp Biol</em> <strong>9</strong>, e1009381 (2021).<br /> 
+<br /> 
+<strong>2020</strong><br />
+Choi B, Cheng Y-Y, Cinar S, Ott W, Bennett MR, Josić K & Kim JK, “Bayesian inference of distributed time delay in transcriptional and translational regulation.” <em>Bioinformatics</em> <strong>36</strong>, 586-593 (2020).[<a href="https://academic.oup.com/bioinformatics/article-abstract/36/2/586/5538987">PDF</a>]<br /> 
+<br />
+Jung S et al. “Sustainable bio-nanocomposite coatings for perishable fruit“ <em>Advanced Materials</em> <strong>12</strong>, 1908291 (2020).[<a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adma.201908291?casa_token=GSWrEQ6k5UUAAAAA%3At5F-pEiknNaD2QXKYweSJSXOt8R8LCAv14BK9vHZr8yyduaixNOWIYjbDQPB6J1p1YSro3IbQA0YZcal">PDF</a>]<br /> 
+<br />
+Alnahhas RN, Sadeghpour M, Chen Y, Frey A, Ott W, Josić J & Bennett MR, “Majority sensing in synthetic microbial consortia.”<em>Nature Comm</em> <strong>11</strong>, 3659 (2020).[<a href="https://www.nature.com/articles/s41467-020-17475-z#:~:text=Abstract,microbial%20consortia%20becomes%20increasingly%20beneficial.&text=Here%20we%20develop%20a%20two,strain%20is%20in%20the%20majority.">PDF</a>]<br /> 
+<br />
+Ho JML, Miller CA, Parks S, Mattia J & Bennett MR, “A suppressor tRNA-mediated feedforward loop eliminates leaky gene expression in bacteria.” <em>Nucl Acids Res (2020)</em> [<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7969014/">PDF</a>]<br />
+<br />
+<strong>2019</strong><br />
+Alnahhas RN, Winkle JJ, Hirning AJ, Karamched B, Ott W, Jośic K & Bennett MR, “Spatiotemporal dynamics of synthetic microbial consortia in microfluidic devices.” <em>ACS Synth Biol</em> <strong>8</strong>, 2051-2058 (2019).[<a href="https://pubs.acs.org/doi/abs/10.1021/acssynbio.9b00146">PDF</a>]<br />
+<br />
+Kim JK, Chen Y, Hirning AJ, Josić K & Bennett MR, “Temporal coordination of gene expression in spatially extended synthetic microbial consortia.” <em>Nat Chem Biol</em> <strong>15</strong>, 1102-1109 (2019).[<a href="https://www.nature.com/articles/s41589-019-0372-9.pdf?origin=ppub">PDF</a>]<br /> 
+<br />
+Molinari M, Shis DL, Chappell J, Igoshin OA & Bennett MR, “A synthetic system for asymmetric cell division in <em>Escherichia coli</em>.” <em>Nat Chem Biol</em> <strong>15</strong>, 917-924 (2019).[<a href="https://www.nature.com/articles/s41589-019-0339-x">PDF</a>]<br /> 
+<br />
+Miller C, Ho JML & Bennett MR, “Bacterial killers engineered to exterminate pathogenic microbes.” <em>Molec Cell</em> <strong>75</strong>, 5-6 (2019).
+[<a href="https://www.cell.com/molecular-cell/fulltext/S1097-2765(19)30484-8">PDF</a>]<br />
+<br />
+Karamched BR, Ott W, Timofeyev I, Alnahhas RN, Bennett MR & Josić K, “Moran model of spatial alignment in microbial colonies.” <em>Physica D</em> <strong>7</strong>, 1834-1843 (2019).[<a href="https://www.sciencedirect.com/science/article/pii/S0167278918304627">PDF</a>]<br />
+<br />
+<strong>2018</strong><br />
+Zong DM, Cinar S, Shis DL, Josić K, Ott W & Bennett MR, “Predicting transcriptional output of synthetic multi-input promoters.” <em>ACS Synth Biol</em> <strong>7</strong>, 1834-1843 (2018).[<a href="https://pubs.acs.org/doi/10.1021/acssynbio.8b00165">PDF</a>]<br />
+<br />
+Dou J & Bennett MR, “Synthetic biology and the gut microbiome.” <em>Biotech J</em> <strong>13</strong>, 1700158 (2018).[<a href="https://onlinelibrary.wiley.com/doi/full/10.1002/biot.201700159">PDF</a>]<br />
+<br />
+Shis DL, Bennett MR & Igoshin OA, “Dynamics of bacterial gene regulatory networks.” <em>Annu Rev Biophys</em> <strong>47</strong>, 21.1-21.21 (2018).[<a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-biophys-070317-032947">PDF</a>]<br />
+<br />
+Ho JML & Bennett MR, “Improved memory devices for synthetic cells.” <em> Science</em> <strong>350</strong>, 150-151 (2018).[<a href="http://science.sciencemag.org/content/360/6385/150">PDF</a>]<br />
+<br />
+Chen Y, Ho JML, Shis DL, Gupta C, Long J, Wagner D, Ott W, Josić K & Bennett MR, “Tuning the dynamic range of bacterial promoters regulated by ligand-inducible transcription factors.” <em>Nature Comm</em> <strong>9</strong>, 64 (2018).[<a href="https://www.nature.com/articles/s41467-017-02473-5">PDF</a>]<br />
+<br />
+<strong>2017</strong><br />
+Perez AM, Gomez MM, Kalvapalle P, O’Brien-Gilbert E, Bennett MR & Shamoo Y, “Using cellular fitness to map the structure and function of a major facilitator superfamily effluxer.” <em>Mol Syst Biol</em> <strong>13</strong>, 964 (2017).[<a href="http://msb.embopress.org/content/13/12/964">PDF</a>]<br />
+<br />
+Ho JML, Mattia JR & Bennett MR, “Tunable NF-kappaB oscillations in yeast.” <em>Cell Systems</em> <strong>5</strong>, 440-442 (2017).[<a href="https://www.sciencedirect.com/science/article/pii/S2405471217304969">PDF</a>]<br />
+<br />
+Cheng YY, Hirning AJ, Josić K & Bennett MR, “Signaling times in synthetic transcriptional cascades.” <em>ACS Synth Biol</em> <strong>6</strong>, 1996-2002 (2017).[<a href="http://pubs.acs.org/doi/10.1021/acssynbio.7b00118">PDF</a>]<br />
+<br />
+Winkle JJ, Igoshin O, Bennett MR, Josić K & Ott W, “Modeling mechanical interactions in growing populations of rod-shaped bacteria.” <em>Phys Biol</em> <strong>14</strong>, 055001 (2017).[<a href="http://iopscience.iop.org/article/10.1088/1478-3975/aa7bae/meta">PDF</a>]<br />
+<br />
+Bennett MR, “The logic of synthetic biology: turning cells into computers.” <em>Angle Journal</em> (2017).[<a href="https://anglejournal.com/article/2017-04-the-logic-of-synthetic-biology-turning-cells-into-computers/">Article</a>]<br />
+<br />
+Sadeghpour M, Veliz-Cuba A, Orosz G, Josić K & Bennett MR, “Bistability and oscillations in co-repressive microbial consortia.” <em>Quant Biol</em> <strong>5</strong>, 55-66 (2017). [<a href="http://link.springer.com/article/10.1007/s40484-017-0100-y">PDF</a>]<br />
+<br />
+<strong>2016</strong><br />
+Gomez MM, Sadeghpour M, Bennett MR, Orosz G & Murray RM, “Stability of systems with stochastic delays and applications to genetic regulatory networks.”  <em>SIAM J Appl Dyn Syst</em> <strong>15</strong>, 1844-1873 (2016). [<a href="http://epubs.siam.org/doi/abs/10.1137/15M1031965">PDF</a>] <br />
+<br />
+Veliz-Cuba A, Gupta C, Bennett MR, Josić K & Ott W, “Effects of cell cycle noise on excitable gene circuits.” <em>Phys Biol</em> <strong>13</strong>, 066007 (2016).  [<a href="http://iopscience.iop.org/article/10.1088/1478-3975/13/6/066007/pdf">PDF</a>]<br />
+<br />
+Gomez MM, Murray RM & Bennett MR, “The effects of time-varying temperature on delayed gene networks.” <em>SIAM J Appl Dyn Syst</em> <strong>15</strong>, 1734-1752 (2016). [<a href="http://epubs.siam.org/doi/abs/10.1137/15M1040979">PDF</a>]<br />
+<br />
+Sousa FL, Parente DJ, Shis DL, Hessman JA, Chazelle A, Bennett MR, Teichmann AS & Swint-Kruse L, “AlloRep: a repository of sequence and mutagenesis data for LacI/GalR transcription regulators.” <em>J Mol Biol</em> <strong>428</strong>, 671-678 (2016). [<a href="http://www.sciencedirect.com/science/article/pii/S0022283615005380">PDF</a>]<br />
+<br />
+<strong>2015</strong><br />
+Veliz-Cuba A, Hirning AJ, Atanas AA, Hussain F, Vancia F, Josic K & Bennett MR, “Sources of noise in a synthetic gene oscillator.” <em>PLoS Comp Biol</em> <strong>11</strong>, e1004674 (2015). [<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004674">PDF</a>]<br />
+<br />
+Kim JK, Josic K & Bennett MR, “The relationship between stochastic and deterministic quasi-steady state approximations.” <em>BMC Syst Biol</em> <strong>9</strong>, 87 (2015). [<a href="http://www.biomedcentral.com/1752-0509/9/87">PDF</a>]<br />
+<br />
+Chen Y, Kim JK, Hirning AJ, Josic K & Bennett MR, "Emergent genetic oscillations in a synthetic microbial consortium," <em>Science</em> <strong>349</strong>, 986-989 (2015). [<a href="http://www.sciencemag.org/content/349/6251/986">PDF</a>]<br />
+See also <a href="http://www.sciencemag.org/content/349/6251/924.summary">Perspective</a>.<br />
+<br />
+Nguyen-Huu TD, Gupta C, Ma B, Ott W, Josic K & Bennett MR, “Timing and variability of galactose metabolic gene activation depend on the rate of environmental change.” <em>PLoS Comp. Biol.</em> <strong>10</strong>, e1004399 (2015). [<a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004399">PDF</a>]  <br />
+<br />
+<strong>2014</strong><br />
+Shis DL, Hussain F, Meinhardt S, Swint-Kruse L & Bennett MR, “Modular, multi-input transcriptional logic gating with orthogonal LacI/GalR family chimeras,” <em>ACS Synth. Biol.</em> <strong>3</strong>, 645-651 (2014). [<a href="http://pubs.acs.org/doi/abs/10.1021/sb500262f">PDF</a>]<br />
+<br />
+Kim JK, Josic K & Bennett MR, “The validity of quasi-steady-state approximations in discrete stochastic simulations,” <em>Biophys. J.</em> <strong>107</strong>, 783-793 (2014). [<a href="http://www.sciencedirect.com/science/article/pii/S0006349514006183">PDF</a>]<br />
+<br />
+Shis DL & Bennett MR, “The many facets of T7 RNA polymerase,” <em>Mol Syst Biol</em> <strong>10</strong>, 745 (2014). [<a href="http://msb.embopress.org/content/msb/10/7/745.full.pdf">PDF</a>]<br />
+<br />
+Gupta C, Lopez JM, Azencott R, Bennett MR, Josic K & Ott, W, "Modeling delay in genetic networks: From delay birth-death processes to delay stochastic differential equations." <em>J. Chem. Phys.</em> <strong>140</strong>, 204108 (2014). [<a href="http://scitation.aip.org/content/aip/journal/jcp/140/20/10.1063/1.4878662">PDF</a>]<br />
+<br />
+Kim JK, Kilpatrick ZP, Bennett MR & Josic K, "Molecular mechanisms that regulate the coupled period of the mammalian circadian clock." <em>Biophys. J.</em> <strong>106</strong>, 2071-2081 (2014). [<a href="http://www.cell.com/biophysj/abstract/S0006-3495(14)00337-3">PDF</a>]<br />
+See also <a href="http://www.sciencedirect.com/science/article/pii/S0006349514003385">New and Notable</a>.<br />
+<br />
+Hussain F, Gupta C, Hirning AJ, Ott WR, Matthews KS, Josic K & Bennett MR, “Engineered temperature compensation in a synthetic genetic clock.” <em>Proc. Natl. Acad. Sci. USA</em> <strong>111</strong>, 972-977 (2014). [<a href="http://www.pnas.org/content/111/3/972.abstract.html">PDF</a>]<br />
+<br />
+<strong>2013</strong><br />
+Masiello CA, Chen Y, Gao X, Liu S, Cheng HY, Bennett MR, Rudgers JA, Wagner DS, Zygourakis K & Silberg JJ, “Biochar and microbial signaling: Production conditions determine effects on microbial communication.” <em>Environ. Sci. Technol.</em> <strong>47</strong>, 11496-11503 (2013). [<a href="http://pubs.acs.org/doi/pdf/10.1021/es401458s">PDF</a>]<br />
+<br />
+Razinkov IA, Baumgartner BL, Bennett MR, Tsimring LS & Hasty J, “Measuring competitive fitness in dynamic environments.” <em>J. Phys. Chem.</em> <strong>117</strong>, 13175-13181 (2013). [<a href="http://pubs.acs.org/doi/pdf/10.1021/jp403162v">PDF</a>]<br />
+<br />
+Gupta C, Lopez JM, Ott WR, Josic K & Bennett MR, “Transcriptional delay stabilizes bistable gene networks.” <em>Phys. Rev. Lett.</em> <strong>111</strong>, 058104 (2013). [<a href="http://prl.aps.org/pdf/PRL/v111/i5/e058104">PDF</a>]<br />
+<br />
+Shis DL & Bennett MR, “A library of synthetic transcriptional AND gates built with split T7 RNA polymerase mutants.” <em>Proc. Natl. Acad. Sci. USA</em> <strong>110</strong>, 5028-5033 (2013). [<a href="http://www.pnas.org/content/110/13/5028.abstract">PDF</a>] <br />
+<br />
+<strong>2012</strong><br />
+Schmidt CM, Shis DL, Nguyen-Huu TD & Bennett MR, “Stable maintenance of multiple plasmids in E. coli using a single selective marker.” <em>ACS Synth. Biol.</em> <strong>1</strong>, 445-450 (2012). [<a href="http://pubs.acs.org/doi/pdf/10.1021/sb3000589">PDF</a>] <br />
+<br />
+Nevozhay D, Adams RM, Van Itallie E, Bennett MR & Balázsi G, “Mapping the environmental fitness landscape of a synthetic gene circuit,” <em>PLoS Comp. Biol.</em> <strong>8</strong>, e1002480 (2012). [<a href="http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1002480">PDF</a>] <br />
+<br />
+O&#8217;Brien EL, Van Itallie E & Bennett MR, “Modeling synthetic gene oscillators,” <em>Math. Biosci.</em> <strong>236</strong>, 1-15 (2012). [<a href="http://www.sciencedirect.com/science/article/pii/S002555641200003X">PDF</a>] <br />
+<br />
+<strong>2011</strong><br />
+Baumgartner BL, Bennett MR, Ferry M, Johnson T, Tsimring LS & Hasty J, “Antagonistic gene transcripts regulate adaptation to new growth environments,” <em>Proc. Natl. Acad. Sci. USA</em> <strong>108</strong>, 21087-21092 (2011). [<a href="http://www.pnas.org/content/108/52/21087.full.pdf+html">PDF</a>] <br />
+<br />
+Josic K, López JM, Ott W, Shiau L & Bennett MR, “Stochastic delay accelerates signaling in gene networks,” <em>PLoS Comp. Biol.</em> <strong>7</strong>, e1002264 (2011). [<a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1002264">PDF</a>] <br />
+<br />
+<strong>2010</strong><br />
+Pena MI, Davlieva M, Bennett MR, Olson JS & Shamoo Y, “Evolutionary fates within a microbial population highlight an essential role for protein folding during natural selection,” <em>Mol. Syst. Biol.</em> <strong>6</strong>, 387 (2010). [<a href="http://www.nature.com/msb/journal/v6/n1/pdf/msb201043.pdf">PDF</a>]
+<p>
+Pena MI, Van Itallie E, Bennett MR & Shamoo Y, “Evolution of a single gene highlights the complexity underlying molecular descriptions of fitness,” <em>CHAOS</em> <strong>20</strong>, 026107 (2010). [<a href="http://chaos.aip.org/resource/1/chaoeh/v20/i2/p026107_s1">PDF</a>]
+<p>
+<strong>2009</strong><br />
+Bennett MR & Hasty J, “Microfluidic devices for measuring gene network dynamics in single cells,” <em>Nat. Rev. Gen.</em> <strong>10</strong>, 628-638 (2009). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_natrevgen_2009.pdf">PDF</a>]
+<p>
+Bennett MR & Hasty J, “Overpowering the component problem,” <em>Nat. Biotech.</em> <strong>27</strong>, 450-451 (2009). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_natbiotech_2009.pdf">PDF</a>]
+<p>
+Mather W, Bennett MR, Hasty J & Tsimring LS, “Delay-induced degrade-and-fire oscillations in small genetic circuits,” <em>Phys. Rev. Lett.</em> <strong>102</strong>, 068105 (2009). [<a href="http://www.bioc.rice.edu/~mb24/papers/mather_prl_2009.pdf">PDF</a>]
+<p>
+<strong>2008</strong><br />
+Handel A & Bennett MR, “Surviving the bottleneck: Transmission mutants and the evolution of microbial populations,” <em>Genetics</em> <strong>180</strong>, 2193-2200 (2008). [<a href="http://www.bioc.rice.edu/~mb24/papers/handel_genetics_2008.pdf">PDF</a>]
+<p>
+Stricker J, Cookson S, Bennett MR, Mather WH, Tsimring LS & Hasty J, “A fast, robust and tunable synthetic gene oscillator,” <em>Nature</em> <strong>456</strong>, 516-519 (2008). [<a href="http://www.bioc.rice.edu/~mb24/papers/stricker_nature_2008.pdf">PDF</a>]
+<p>
+Bennett MR, Pang WL, Ostroff NA, Baumgartner BL, Nayak S, Tsimring LS & Hasty J, “Metabolic gene regulation in a dynamically changing environment,” <em>Nature</em> <strong>454</strong>, 1119-1122 (2008). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_nature_2008b.pdf">PDF</a>]
+<p>
+Bennett MR & Hasty J, “Genome rewired,” <em>Nature</em> <strong>452</strong>, 824-825 (2008). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_nature_2008a.pdf">PDF</a>]
+<p>
+<strong>2007</strong><br />
+Lu T, Shen T, Bennett MR, Wolynes PG & Hasty J, “Phenotypic variability of growing cellular populations,” <em>Proc. Natl. Acad. Sci. USA</em> <strong>104</strong>, 18982-18987 (2007). [<a href="http://www.bioc.rice.edu/~mb24/papers/lu_pnas_2007.pdf">PDF</a>]
+<p>
+Grilly C, Stricker J, Pang WL, Bennett MR & Hasty J, “A synthetic gene network for tuning protein degradation in Saccharomyces cerevisiae,” <em>Mol. Syst. Biol.</em> <strong>3</strong>, 127 (2007). [<a href="http://msb.embopress.org/content/3/1/127.abstract">PDF</a>]
+<p>
+Bennett MR, Volfson D, Tsimring L & Hasty J, “Transient dynamics of genetic regulatory networks,” <em>Biophys. J.</em> <strong>92</strong>, 3501-3512 (2007). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_biophysj_2007.pdf">PDF</a>]
+<p>
+Bennett MR and Hasty J, “A DNA methylation-based switch generates bistable gene expression,” <em>Nat. Gen.</em> <strong>39</strong>, 146-147 (2007). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_natgen_2007.pdf">PDF</a>]
+<p>
+<strong>2006</strong><br />
+Bennett MR & Wiesenfeld K, “Towards a unified rate theory of stochastic resonance,” <em>Fluct. Noise Lett.</em> <strong>6</strong>, L405-L413 (2006). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_fnl_2006.pdf">PDF</a>]
+<p>
+Bennett MR, “Synchronization and Signal Enhancement in Nonlinear and Stochastic Systems,” Ph.D. Dissertation, Georgia Tech (2006). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_dissertation_2006.pdf">PDF</a>]
+<p>
+Lindner JF, Bennett M & Wiesenfeld K, “Potential energy landscape and finite-state models of array-enhanced stochastic resonance,” <em>Phys. Rev. E</em> <strong>73</strong>, 031107 (2006). [<a href="http://www.bioc.rice.edu/~mb24/papers/lindner_pre_2006.pdf">PDF</a>]
+<p>
+<strong>2005</strong><br />
+Lindner JF, Bennett M & Wiesenfeld K, “Stochastic resonance in the mechanoelectrical transduction of hair cells,” <em>Phys. Rev. E</em> <strong>72</strong>, 051911 (2005). [<a href="http://www.bioc.rice.edu/~mb24/papers/lindner_pre_2005.pdf">PDF</a>]
+<p>
+<strong>2004</strong><br />
+Bennett M, Wiesenfeld K & Jaramillo F, “Stochastic resonance in hair cells,” <em>Fluct. Noise Lett.</em> <strong>4</strong>, L1-L10 (2004). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_fnl_2004.pdf">PDF</a>]
+<p>
+Bennett M & Wiesenfeld K, “Averaged equations for distributed Josephson junction arrays,” <em>Physica D</em> <strong>192</strong>, 196-214 (2004). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_physicaD_2004.pdf">PDF</a>]
+<p>
+<strong>2002</strong><br />
+Bennett M, Schatz MF, Rockwood H & Wiesenfeld K, “Huygens’ clocks,” <em>Proc. Roy. Soc. London A</em> <strong>458</strong>, 563-579 (2002). [<a href="http://www.bioc.rice.edu/~mb24/papers/bennett_prsla_2002.pdf">PDF</a>]</p>                                    </div><!-- end of .post-entry -->
+                
+                             
+            
+            <div class="post-edit"></div> 
+            </div><!-- end of #post-150 -->
+            
+              
+        </div><!-- end of #content -->
+
+        <!-- end of #widgets -->    </div><!-- end of #wrapper -->
+    </div><!-- end of #container -->
+
+<!-- Footer -->
+    <footer>
+        <p>&copy; The Biodesign Lab. Rice University.</p>
+        <!-- <p style="margin-top: 10px; font-size: 14px;">sth inspiring</p> -->
+    </footer>
+</body>
+</html>

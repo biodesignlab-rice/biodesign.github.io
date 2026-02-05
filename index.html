@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodesign Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #003d99;
+            --light-blue: #e6f0ff;
+            --accent-blue: #0099ff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            --shadow-hover: 0 8px 24px rgba(0, 102, 204, 0.25);
+        }
+
+        body {
+      		/* margin: 0;
+      		padding: 0;
+      		width: 100%;
+      		height: 100%;
+      		overflow-x: hidden; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+      .video-container {
+		  max-width: 1500px;  /* Set your desired width */
+		  height: 150px; /* Set your desired height (the final display area) */
+		  overflow: hidden; /* This hides anything that goes outside this box */
+		}
+		
+		.video-container video {
+		  width: 100%; 
+		  height: 100%; 
+		  object-fit: cover; /* This scales the video to cover the container while cropping the excess */
+		  object-position: center center; /* Default: anchors the center of the video in the container */
+		}
+
+        /* Modern Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-image {
+            width: 200px;
+            height: 50px;
+            border-radius: 0%;
+            background-color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo::before {
+            content: ;
+            width: 0px;
+            height: 0px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 20px;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header-section {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            color: var(--primary-blue);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Research Overview */
+        .research-overview {
+            background: linear-gradient(135deg, var(--light-blue) 0%, rgba(0, 153, 255, 0.05) 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        }
+
+        .research-overview p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--text-dark);
+        }
+
+        /* Grid Layout for Content */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.08);
+        }
+
+        .card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* Button Styles */
+        button, .btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        button:active, .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 25px;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            box-shadow: 0 -4px 12px rgba(0, 102, 204, 0.1);
+        }
+
+        footer p {
+            color: var(--white);
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: 60px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .research-overview {
+                padding: 25px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .nav-container {
+                padding: 0 10px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+        }
+      
+      
+      
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-image">
+                    <a href="../index.html">
+                        <img src="wp-content/uploads/2012/05/cropped-Logo.jpg" width="300" height="100" alt="Bennettlab">
+                    </a>
+                </div>
+                <!-- <span><a href="../index.html">The Biodesign Lab</a></span> -->
+            </a>
+            <ul>
+                <li><a href="#research">Research</a></li>
+                <!-- <li><a href="#about">About</a></li> -->
+                <li><a href="people-2/index.html">People</a></li>
+                <li><a href="publications/index.html">Publications</a></li>
+                <li><a href="https://wiki.rice.edu/confluence/display/BIODESIGN/Home">Lab wiki</a></li>
+            </ul>
+        </div>
+    </nav>
+
+  		<div class="video-container">
+		  <video autoplay muted loop>
+		    <source src="webpage_video.m4v" type="video/mp4">
+		    Your browser does not support the video tag.
+		  </video>
+		</div>
+      <!-- <div class="video-container">
+                  <video autoplay muted loop>
+                    <source src="webpage_video.m4v" type="video/mp4">
+                    <!-- Optional: Add fallback text or images for older browsers -->
+                    <!-- Your browser does not support the video tag.
+                  </video>
+      </div> -->
+            
+            <!-- <p style="font-size: 18px; color: var(--primary-blue); font-weight: 500; text-align: center;">Some keywords</p> -->
+     
+        <h1 style="text-align: center;margin-bottom: 40px;">The Biodesign Lab</h1>
+    
+        <!-- Research Overview -->
+        <div class="research-overview" id="research">
+            <h2>Our Research Focus</h2>
+            <p>Our research is aimed at making the transition from unicellular to multicellular synthetic biology. To do this, we create synthetic biological systems capable of mimicking the emergent behaviors of complex multicellular organisms by integrating molecules, systems, and populations. Emergent behaviors in  multicellular systems arise from the interactions of multiple cell types within the population. Each level of organization is important for emergent behaviors to arise. Molecules encode and regulate the genes needed to create the population. Gene networks regulate molecular interactions to bring about phenotype. Molecules transmit information within the population to give rise to emergent behavior. Because of this, population-level synthetic biology is not possible unless each level of organization, from molecules to systems to populations, is engineered to integrate into the whole.
+			</p><!-- <p>Our research spans the boundary between theoretical and experimental synthetic biology. We use an interdisciplinary approach to:</p>
+            <ul>
+                <li><strong>Uncover design principles</strong> - Governing gene networks and microbial consortia</li>
+                <li><strong>Develop mathematical tools</strong> - To better describe gene networks and their behavior</li>
+                <li><strong>Engineer synthetic circuits</strong> - For environmental and medical applications</li>
+            </ul> -->
+        </div>
+
+        <!-- Research Areas Grid -->
+        <h2>Research Areas</h2>
+        <div class="grid-section">
+            <div class="card">
+                <h3>Multicellular synthetic biology</h3>
+                <p>We are studying the emergent properties of living systems composed of multiple interacting cell types. We are discovering new mechanisms for coordinating dynamic gene expression across lengthscales, creating periodic spatial patterns and sensing and maintaining cell type ratios.</p>
+            </div>
+            <div class="card">
+                <h3>Mimicking eukaryotic developmental processes in bacteria</h3>
+                <p>We are exploring ways in which to engineer bacterial systems to mimic natural cellular processes found in multicellular organisms. We have engineered a system for synthetic differentiation in E. coli and are exploring the dynamics and pattern formation of differentiating populations.</p>
+            </div>
+        </div>
+        <div class="grid-section">
+            <div class="card">
+                <h3>Developing tools for robust cellular control</h3>
+                <p>Collective behaviors require cells to be able to accurately sense their environment and make decisions despite external perturbations and intracellular noise. We are developing systems for improved environmental sensing, multi-input signal integration and robust adaptation to environmental perturbations.</p>
+            </div>
+            <div class="card">
+                <h3>Understanding the mathematics of cells</h3>
+                <p>We are developing models that correctly predict the function and dynamics of synthetic gene circuits and populations. We are challenging existing paradigms by creating and analyzing gene expression models that incorporate stochasticity and delays as well as population models that incorporate emergent chemical gradients and mechanical interactions.</p>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <!--<div id="about">
+            <h2>About sth</h2>
+            <p> about sections </p>
+            <!-- <p>Synthetic biology represents a paradigm shift in how we approach biological engineering. By combining principles from engineering with biological knowledge, we can create novel solutions to complex challenges in medicine, environment, and industry.</p>
+            <p>Our interdisciplinary team brings together expertise in:</p>
+            <ul>
+                <li>Molecular & Systems Biology</li>
+                <li>Mathematical Modeling</li>
+                <li>Computational Biology</li>
+                <li>Chemical Engineering</li>
+                <li>Biomedical Engineering</li>
+            </ul> -->
+        <!--</div>
+
+        <!-- CTA Button -->
+        <!-- <div style="margin-top: 50px; text-align: center;">
+            <button>Get in Touch</button>
+        </div> -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; The Biodesign Lab. Rice University.</p>
+        <!--<p style="margin-top: 10px; font-size: 14px;">sth inspiring</p> -->
+    </footer>
+</body>
+</html>
